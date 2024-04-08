@@ -1,13 +1,13 @@
-//create cars api using express
 const express = require('express');
 const app = express();
 const cors = require('cors');
 app.use(cors());
 
-
 app.use(express.json());
 
 const cars = require('./cars.json');
+
+const PORT = process.env.PORT || 3001; // Use the provided port or default to 3001
 
 //get all cars
 app.get('/cars', (req, res) => {
@@ -40,14 +40,12 @@ app.delete('/cars/:id', (req, res) => {
 
 //add car
 app.post('/cars', (req, res) => {
-    console.log(req);
     const newCar = req.body;
-    console.log(newCar);
     cars.push(newCar);
     res.json(newCar);
 });
 
-//start app at localhost:3001
-app.listen(3001, () => {
-    console.log('Server started at http://localhost:3001');
+//start app
+app.listen(PORT, () => {
+    console.log(`Server started at http://localhost:${PORT}`);
 });
