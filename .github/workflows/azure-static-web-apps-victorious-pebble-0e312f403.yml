@@ -19,6 +19,12 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Install dependencies and build
+        run: |
+          cd src  # Change directory to your app source code path
+          npm install  # Install dependencies
+          npm run build  # Run the build script
+          cd ..  # Go back to the root directory
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
